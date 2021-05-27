@@ -28,3 +28,27 @@ npm run start
 docker-compose exec web bundle exec rake db:create
 docker-compose exec web bundle exec rake db:migrate
 ```
+
+### How to deploy your app with "AWS AppRunner"
+
+#### Prerequisites
+
+- AWS CLI
+  - `~/.aws/config` and `~/.aws/credentials` should be configured properly.
+- Docker
+
+AWS ECR Repository needs to be initialized manually from AWS Web console.
+
+```bash
+# -p profile : Profile name, no default value.
+# -e [stg|prod] : Environment name, defaults to "prod".
+# -t tag : Tag name, defaults to "latest".
+# -i image : Image name, defaults to "play-with-rails6_web".
+# -v verbose : Show debug log.
+$ ./bin/ecr-deploy.sh --profile "${AWS_PROFILE}" -e prod -t latest -i play-with-rails6_web
+```
+
+After successful deployment(push) of Docker image to ECR,
+You can setup "ECR to AppRunner" deployment from AWS Web console.
+
+Check official article [Introducing AWS App Runner | Containers](https://aws.amazon.com/jp/blogs/containers/introducing-aws-app-runner/) for further steps needed for deployment.
