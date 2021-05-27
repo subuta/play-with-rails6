@@ -52,3 +52,14 @@ After successful deployment(push) of Docker image to ECR,
 You can setup "ECR to AppRunner" deployment from AWS Web console.
 
 Check official article [Introducing AWS App Runner | Containers](https://aws.amazon.com/jp/blogs/containers/introducing-aws-app-runner/) for further steps needed for deployment.
+
+### Update deployed service
+
+```bash
+# Build latest image.
+npm run build
+
+# Do push Docker image into ECR.
+# If you use "Repository type: Container registry" and set Deployment trigger to "Automatic", this "push" action results new deployment of AppRunner service.
+./bin/ecr-deploy.sh --profile "${AWS_PROFILE}" -e prod -t latest -i play-with-rails6_web
+```
