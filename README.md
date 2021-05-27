@@ -5,7 +5,7 @@
 ```
 # Run rails new for creating boilerplate (only first time)
 # SEE: https://qiita.com/masuidrive/items/7478fb9101652f2bbae1
-docker run --rm -v `pwd`:/usr/src/app ruby:2.5.1 sh -c "curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get update -qq && apt-get install -qq --no-install-recommends nodejs && npm i yarn -g && gem install rails && rails new /usr/src/app --database postgresql --force --version 6"
+docker run --rm -v `pwd`:/usr/src/app ruby:3.0.1 sh -c "curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get update -qq && apt-get install -qq --no-install-recommends nodejs && npm i yarn -g && gem install rails && rails new /usr/src/app --database postgresql --force --version 6"
 
 # Build web image by buildpack
 # SEE: [Cloud Native Buildpacks · Cloud Native Buildpacks](https://buildpacks.io/)
