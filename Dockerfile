@@ -1,4 +1,4 @@
-FROM ruby:2.5.1
+FROM ruby:3.0.1
 
 # Install Node.js v12
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -

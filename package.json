@@ -11,5 +11,27 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "description": "### How to develop",
+  "main": "babel.config.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "docker-compose up",
+    "build": "docker run -u501: -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace buildpacksio/pack build play-with-rails6_web_prod --builder heroku/buildpacks",
+    "start": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subuta/play-with-rails6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/subuta/play-with-rails6/issues"
+  },
+  "homepage": "https://github.com/subuta/play-with-rails6#readme"
 }
