@@ -7,10 +7,14 @@
 # SEE: https://qiita.com/masuidrive/items/7478fb9101652f2bbae1
 docker run --rm -v `pwd`:/usr/src/app ruby:3.0.1 sh -c "curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get update -qq && apt-get install -qq --no-install-recommends nodejs && npm i yarn -g && gem install rails && rails new /usr/src/app --database postgresql --force --version 6"
 
+# Pull base images.
+docker pull heroku/buildpacks:20
+docker pull heroku/pack:20
+
 # Build web image by buildpack
 # SEE: [Cloud Native Buildpacks · Cloud Native Buildpacks](https://buildpacks.io/)
 # Pass `-u501` means run this command as UID:501 user. 
-docker run -u501: -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace buildpacksio/pack build play-with-rails6_web_prod --builder heroku/buildpacks
+docker run -u501: -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace buildpacksio/pack build play-with-rails6_web_prod --clear-cache --pull-policy if-not-present --builder heroku/buildpacks
 # Or run custom npm script
 npm run build
 
