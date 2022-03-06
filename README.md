@@ -13,6 +13,7 @@ docker pull heroku/pack:20
 
 # Build web image by buildpack
 # SEE: [Cloud Native Buildpacks · Cloud Native Buildpacks](https://buildpacks.io/)
+# Pass `-u501` means run this command as UID:501 user.
 docker run -u501: -v /var/run/docker.sock.raw:/var/run/docker.sock -v $PWD:/workspace -w /workspace --entrypoint=pack buildpacksio/pack:0.24.0 build play-with-rails6_web_prod --clear-cache --pull-policy if-not-present --builder heroku/buildpacks:20
 # Or run custom npm script
 npm run build
