@@ -5,7 +5,7 @@
 ```
 # Run rails new for creating boilerplate (only first time)
 # SEE: https://qiita.com/masuidrive/items/7478fb9101652f2bbae1
-docker run --rm -v `pwd`:/usr/src/app ruby:3.0.1 sh -c "curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get update -qq && apt-get install -qq --no-install-recommends nodejs && npm i yarn -g && gem install rails && rails new /usr/src/app --database postgresql --force --version 6"
+docker run --rm -v `pwd`:/usr/src/app ruby:3.0.4 sh -c "curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get update -qq && apt-get install -qq --no-install-recommends nodejs && npm i yarn -g && gem install rails && rails new /usr/src/app --database postgresql --force --version 6"
 
 # Pull base images.
 docker pull heroku/buildpacks:20
@@ -14,7 +14,7 @@ docker pull heroku/pack:20
 # Build web image by buildpack
 # SEE: [Cloud Native Buildpacks · Cloud Native Buildpacks](https://buildpacks.io/)
 # Pass `-u501` means run this command as UID:501 user.
-docker run -u501: -v /var/run/docker.sock.raw:/var/run/docker.sock -v $PWD:/workspace -w /workspace --entrypoint=pack buildpacksio/pack:0.24.0 build play-with-rails6_web_prod --clear-cache --pull-policy if-not-present --builder heroku/buildpacks:20
+docker run -u501: -v /var/run/docker.sock.raw:/var/run/docker.sock -v $PWD:/workspace -w /workspace --entrypoint=pack buildpacksio/pack:0.27.0 build play-with-rails6_web_prod --clear-cache --pull-policy if-not-present --builder heroku/buildpacks:20
 # Or run custom npm script
 npm run build
 

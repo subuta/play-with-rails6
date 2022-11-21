@@ -1,4 +1,4 @@
-FROM ruby:3.0.1
+FROM ruby:3.0.4
 
 # Install Node.js v12
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -10,7 +10,7 @@ RUN npm i yarn -g
 
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+#COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
 
